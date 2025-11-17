@@ -1,0 +1,72 @@
+def calculate_discount(price, discount_percent):
+    """
+    Calculates the final price after applying a discount, but only if the
+    discount percentage is 20% or higher.
+
+    Parameters:
+        price (float or int): The original price of the item.
+        discount_percent (float or int): The discount percentage (e.g., 20 for 20%).
+
+    Returns:
+        float: The final price after the discount, or the original price 
+               if the discount is less than 20%.
+    """
+    
+    # 1. Check if the discount is 20% or higher
+    if discount_percent >= 20:
+        # 2. Calculate the discount amount
+        discount_amount = price * (discount_percent / 100)
+        
+        # 3. Calculate the final price
+        final_price = price - discount_amount
+        
+        return final_price
+    else:
+        # 4. Return the original price if the discount is too low
+        return price
+
+# --- Example Usage ---
+print(f"Original Price $100 with 25% discount: ${calculate_discount(100, 25):.2f}") # Output: 75.00
+print(f"Original Price $50 with 15% discount: ${calculate_discount(50, 15):.2f}")   # Output: 50.00
+print(f"Original Price $200 with 20% discount: ${calculate_discount(200, 20):.2f}") # Output: 160.00
+
+
+
+def calculate_discount(price, discount_percent):
+    """
+    Calculates the final price after applying a discount, but only if the
+    discount percentage is 20% or higher.
+    """
+    if discount_percent >= 20:
+        # Calculate the final price after discount
+        discount_amount = price * (discount_percent / 100)
+        final_price = price - discount_amount
+        return final_price
+    else:
+        # Return the original price if the discount is too low
+        return price
+
+# --- User Input and Output ---
+
+try:
+    # 1. Prompt the user for input
+    original_price = float(input("Enter the original price of the item: $"))
+    discount_rate = float(input("Enter the discount percentage (e.g., 25 for 25%): "))
+
+    # 2. Call the function to get the final price
+    final_price = calculate_discount(original_price, discount_rate)
+
+    # 3. Print the result based on whether a discount was applied
+    if final_price < original_price:
+        # Discount was applied
+        print(f"\n🎉 Great deal! The final discounted price is: ${final_price:.2f}")
+    else:
+        # No discount was applied (discount was less than 20%)
+        print(f"\n⚠️ No discount applied (must be 20% or higher). The price remains: ${final_price:.2f}")
+
+except ValueError:
+    # Handle cases where the user enters non-numeric input
+    print("\n🚨 Error: Please enter valid numbers for price and percentage.")
+except Exception as e:
+    # Handle any other unexpected errors
+    print(f"\nAn unexpected error occurred: {e}")
